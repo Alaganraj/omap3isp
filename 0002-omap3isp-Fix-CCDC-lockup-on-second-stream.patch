@@ -1,0 +1,27 @@
+From f12e23ffd588c9b4f16639035deb28de89ba1567 Mon Sep 17 00:00:00 2001
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Date: Wed, 5 Aug 2015 21:14:17 -0700
+Subject: [PATCH 2/2] omap3isp: Fix CCDC lockup on second stream
+
+Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Signed-off-by: Alaganraj Sandhanam <alaganraj.sandhanam@gmail.com>
+---
+ drivers/media/platform/omap3isp/ispccdc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/media/platform/omap3isp/ispccdc.c b/drivers/media/platform/omap3isp/ispccdc.c
+index a6a61cc..d263b78 100644
+--- a/drivers/media/platform/omap3isp/ispccdc.c
++++ b/drivers/media/platform/omap3isp/ispccdc.c
+@@ -1925,7 +1925,7 @@ static int ccdc_set_stream(struct v4l2_subdev *sd, int enable)
+ 		ret = ccdc_disable(ccdc);
+ 		if (ccdc->output & CCDC_OUTPUT_MEMORY)
+ 			omap3isp_sbl_disable(isp, OMAP3_ISP_SBL_CCDC_WRITE);
+-		omap3isp_subclk_disable(isp, OMAP3_ISP_SUBCLK_CCDC);
++		//omap3isp_subclk_disable(isp, OMAP3_ISP_SUBCLK_CCDC);
+ 		ccdc->underrun = 0;
+ 		break;
+ 	}
+-- 
+1.9.1
+
